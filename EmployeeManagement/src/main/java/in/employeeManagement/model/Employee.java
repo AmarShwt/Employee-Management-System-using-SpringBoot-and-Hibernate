@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-
-
 @Entity
 @Table(name = "tbl_employee")
 public class Employee {
@@ -30,7 +28,6 @@ public class Employee {
 	@NotBlank(message="Department is mandatory")
 	private String department;
 	@Column
-	//@NotBlank(message="Dob is mandatory")
 	private Date dob;
 
 	public int getId() {
