@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import in.employeeManagement.EmployeeManagementApplication;
 import in.employeeManagement.Exception.EmployeeNotFoundException;
 import in.employeeManagement.dto.EmployeeDto;
 import in.employeeManagement.service.EmployeeService;
@@ -28,9 +26,9 @@ import in.employeeManagement.service.EmployeeService;
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
-	
-	private static final Logger LOGGER=LoggerFactory.getLogger(EmployeeController.class);
-	
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
+
 	@Autowired
 	private EmployeeService employeeService;
 
@@ -48,15 +46,15 @@ public class EmployeeController {
 
 	@PostMapping
 	public ResponseEntity<?> save(@Valid @RequestBody EmployeeDto employeeDto) {
-		
+
 		try {
 			LOGGER.info("Inside Save API");
 			employeeService.save(employeeDto);
 			return new ResponseEntity<>("Employee details saved sucessfully", HttpStatus.OK);
-		}catch (ConstraintViolationException exp) {
+		} catch (ConstraintViolationException exp) {
 			LOGGER.info("Inside Save API: Exception occured >> Wrong input data entered!");
 			return new ResponseEntity<>("Wrong Input Details!", HttpStatus.BAD_REQUEST);
-		}catch (Exception exp) {
+		} catch (Exception exp) {
 			LOGGER.info("Inside Save API : Exception occured >> Internal Server Error");
 			return new ResponseEntity<>("Something went wrong" + exp, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -90,8 +88,9 @@ public class EmployeeController {
 			return new ResponseEntity<>("Employee with Id :" + id + " has been deleted sucessfully", HttpStatus.OK);
 		} catch (EmployeeNotFoundException ex) {
 			LOGGER.info("Inside DeleteEmployee API : Exception occured >> Wrong Id entered!");
-			return new ResponseEntity<>("Employee with id:" + id + " not found\n" +ex.getMessage(), HttpStatus.NO_CONTENT);
-		}catch (Exception ex) {
+			return new ResponseEntity<>("Employee with id:" + id + " not found\n" + ex.getMessage(),
+					HttpStatus.NO_CONTENT);
+		} catch (Exception ex) {
 			LOGGER.info("Inside DeleteEmployee API : Exception occured >> Internal Server Error!");
 			return new ResponseEntity<>("Employee with id:" + id + " not found", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -117,5 +116,7 @@ public class EmployeeController {
  * value (API request should have username and password as 'password') 4. Add
  * Loggers 5. Authentications using JWT TokensJWT 6. Use AWS services 7. Design
  * Patterns NOTE: APIs should always have only input validations and exception
- * handling and returning code.. No business logics
+ * handling and returning code.. No business logics Note : 1-Object pull >> Read
+ * 2- microservices 3- Multitrading 3- SQL Queries 4- AWS >> Deploye this on EC2
+ * and RDS, command line use of s3, SQS.
  */
