@@ -115,7 +115,7 @@ public class EmployeeController {
  * List employees by department ID 3. API Authentications using hardcoded string
  * value (API request should have username and password as 'password') 4. Add
  * Loggers 5. Authentications using JWT TokensJWT 6. Use AWS services 7. Design
- * Patterns NOTE: APIs should always have only input validations and exception
+ * Patterns (https://www.oodesign.com/) NOTE: APIs should always have only input validations and exception
  * handling and returning code.. No business logics Note : 1-Object pull >> Read
  * 2- microservices 3- Multitrading 3- SQL Queries 4- AWS >> Deploye this on EC2
  * and RDS, command line use of s3, SQS.
